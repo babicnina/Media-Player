@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="MediaPlayer.AddPlaylist"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MediaPlayer"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="LightBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="Create your playlist" FontSize="20" Foreground="White" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,5,0,0"></TextBlock>
+        <TextBox Grid.Row="1" x:Name="playlistName" Height="30" Width="500" IsHitTestVisible="True" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Background="White"></TextBox>
+        <TextBlock Grid.Row="1" x:Name="Placeholder" TextWrapping="Wrap" Text="Playlist name" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="DarkGray" FontSize="15" Background="Transparent">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=playlistName}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        <WrapPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" DockPanel.Dock="Top">
+            <Button Name="btnOpenFile" Click="SelectSongs_Click" Background="#6E6D6F" Width="120" Height="30" BorderBrush="Transparent">Select songs</Button>
+        </WrapPanel>
+        <ListBox Grid.Row="3" Name="lbFiles" Background="White" Width="300" HorizontalAlignment="Center" Visibility="Collapsed"/>
+        <TextBlock Name="errorMessage" Grid.Row="4" Foreground="Red" FontSize="11" Visibility="Collapsed"></TextBlock>
+        <Button x:Name="btnSavePlaylist" Grid.Row="4" VerticalAlignment="Center" Width="120" Height="30" Click="Save_Click" Foreground="White" Background="#6E6D6F" BorderBrush="Transparent" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center">Save</Button>
+    </Grid>
+</UserControl>
